@@ -7,6 +7,11 @@ namespace Nagoya\Doukaku15;
 class App
 {
     /**
+     * @var InputParser
+     */
+    private $inputParser;
+
+    /**
      * @var LineRegistry
      */
     private $lineRegistry;
@@ -22,6 +27,7 @@ class App
      */
     public function __construct(LineRegistry $lineRegistry = null, PolygonFinder $polygonFinder = null)
     {
+        $this->inputParser = new InputParser();
         $this->lineRegistry = $lineRegistry ?? new LineRegistry([1, 2, 4, 8, 16, 32, 64, 128]);
         $this->polygonFinder = $polygonFinder ?? new PolygonFinder([1 => 3, 2 => 4, 3 => 5, 4 => 5, 5 => 7, 6 => 8, 7 => 9]);
     }
@@ -30,7 +36,7 @@ class App
     public function run(string $input)
     {
         // dummy
-        $numbers = [1, 4, 32, 128];
+        $numbers = $this->inputParser->parse($input);
 
         $gaps = [];
         foreach ($numbers as $seq => $number) {

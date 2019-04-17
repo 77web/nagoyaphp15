@@ -41,4 +41,18 @@ class Line
     {
         return $this->position;
     }
+
+    /**
+     * @param Line $line
+     * @return float|int
+     */
+    public function getGap(Line $line): int
+    {
+        $gap = abs($line->getPosition() - $this->getPosition());
+        if ($gap > 4) {
+            $gap = 8 - $gap;
+        }
+
+        return $gap;
+    }
 }

@@ -8,19 +8,9 @@ use PHPUnit\Framework\TestCase;
 
 class AppTest extends TestCase
 {
-    /**
-     * @var App
-     */
-    protected $doukaku15;
-
-    protected function setUp() : void
+    public function test_functional()
     {
-        $this->doukaku15 = new App;
-    }
-
-    public function testIsInstanceOfDoukaku15() : void
-    {
-        $actual = $this->doukaku15;
-        $this->assertInstanceOf(App::class, $actual);
+        $app = new App();
+        $this->assertEquals("3445", $app->run("165"));
     }
 }

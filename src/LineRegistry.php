@@ -19,7 +19,7 @@ class LineRegistry
         }
     }
 
-    public function get(int $number)
+    public function get(int $number): Line
     {
         foreach ($this->lines as $line) {
             if ($line->getNumber() === $number) {
@@ -28,5 +28,16 @@ class LineRegistry
         }
 
         throw new \InvalidArgumentException(sprintf('No Line found for number %d', $number));
+    }
+
+    public function getByPosition(int $position): Line
+    {
+        foreach ($this->lines as $line) {
+            if ($line->getPosition() === $position) {
+                return $line;
+            }
+        }
+
+        throw new \InvalidArgumentException(sprintf('No Line found for position %d', $position));
     }
 }
